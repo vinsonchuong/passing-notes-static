@@ -13,7 +13,12 @@
     "release": "semantic-release"
   },
   "type": "module",
-  "dependencies": {},
+  "dependencies": {
+    "content-type": "^1.0.4",
+    "fresh": "^0.5.2",
+    "mime": "^2.4.6",
+    "url-parse": "^1.4.7"
+  },
   "peerDependencies": {
     "passing-notes": "^6.2.0"
   },
