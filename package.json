@@ -14,8 +14,12 @@
   },
   "type": "module",
   "dependencies": {},
+  "peerDependencies": {
+    "passing-notes": "^6.2.0"
+  },
   "devDependencies": {
     "ava": "^3.13.0",
+    "passing-notes": "^6.2.0",
     "semantic-release": "^17.2.1",
     "xo": "^0.34.1"
   },
