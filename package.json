@@ -1,7 +1,7 @@
 {
   "name": "passing-notes-static",
   "version": "0.0.0",
-  "description": "An awesome package",
+  "description": "A static file middleware for passing-notes",
   "keywords": [],
   "homepage": "https://github.com/vinsonchuong/passing-notes-static",
   "bugs": "https://github.com/vinsonchuong/passing-notes-static/issues",
