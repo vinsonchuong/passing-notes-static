@@ -1,4 +1,7 @@
 import test from 'ava'
+import {useTemporaryDirectory} from 'ava-patterns'
+import {openChrome} from 'puppet-strings-chrome'
+import {closeBrowser, openTab, findElement, navigate} from 'puppet-strings'
 import {startServer, stopServer, compose, sendRequest} from 'passing-notes'
 import serveStatic from './index.js'
 
@@ -62,4 +65,47 @@ test('falling through when a file cannot be found', async (t) => {
   })
 
   t.is(response.status, 404)
+})
+
+test('revalidating cached resources', async (t) => {
+  const directory = await useTemporaryDirectory(t)
+
+  const browser = await openChrome()
+  t.teardown(async () => {
+    await closeBrowser(browser)
+  })
+
+  const server = await startServer(
+    {port: 10001},
+    compose(serveStatic(directory.path), () => () => ({
+      status: 404,
+      headers: {},
+      body: ''
+    }))
+  )
+  t.teardown(async () => {
+    await stopServer(server)
+  })
+
+  await directory.writeFile(
+    'index.html',
+    `
+    <!doctype html>
+    <meta charset="utf-8">
+    <div>Hello World!</div>
+    `
+  )
+  const tab = await openTab(browser, 'http://localhost:10001')
+  t.like(await findElement(tab, 'div'), {innerText: 'Hello World!'})
+
+  await directory.writeFile(
+    'index.html',
+    `
+    <!doctype html>
+    <meta charset="utf-8">
+    <div>Hello There!</div>
+    `
+  )
+  await navigate(tab, 'http://localhost:10001')
+  t.like(await findElement(tab, 'div'), {innerText: 'Hello There!'})
 })

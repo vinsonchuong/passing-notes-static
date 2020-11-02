@@ -38,6 +38,7 @@ async function serveFile(request, filePath) {
         charset: 'utf-8'
       }
     }),
+    'cache-control': 'no-cache',
     'last-modified': new Date(fileStats.mtime).toUTCString()
   }
   if (fresh(request.headers, responseHeaders)) {
