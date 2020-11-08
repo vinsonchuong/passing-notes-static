@@ -6790,12 +6790,12 @@ magic-string@^0.22.4:
   dependencies:
     vlq "^0.2.2"
 
-make-cert@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/make-cert/-/make-cert-1.1.0.tgz#a6b748a470a2d41ce035acbb7b4c7fa4e98ca8b3"
-  integrity sha512-RUZ/1euwmBAUb8Hhx+UtBq1azC4jzJXE4GV/X+QIntSR+2vaWBDIWPoPbZITkZ34liA5dWMdhNYp9Gj2Dqvwjw==
+make-cert@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/make-cert/-/make-cert-1.1.1.tgz#22ecc5719395464804efc05f9ef8c92e01929f9e"
+  integrity sha512-CFt+fLX0boEvJmAfelWjORgN+0cKJRSH7fEAZArfLLu9kf2p5G3/EZcRsJ3jrM5va583IpY1cArSQDVSsiR4lQ==
   dependencies:
-    node-forge "^0.9.1"
+    node-forge "^0.10.0"
 
 make-dir@^1.0.0:
   version "1.3.0"
@@ -7290,15 +7290,15 @@ node-fetch@2.6.1, node-fetch@^2.6.1:
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
   integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
+node-forge@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.10.0.tgz#32dea2afb3e9926f02ee5ce8794902691a676bf3"
+  integrity sha512-PPmu8eEeG9saEUvI97fm4OYxXVB6bFvyNTyiUOBichBpFG8A1Ljw3bY62+5oOjDEMHRnd0Y7HQ+x7uzxOzC6JA==
+
 node-forge@^0.7.1:
   version "0.7.6"
   resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.7.6.tgz#fdf3b418aee1f94f0ef642cd63486c77ca9724ac"
   integrity sha512-sol30LUpz1jQFBjOKwbjxijiE3b6pjd74YwfD0fJOKPjF+fONKb2Yg8rYgS6+bK6VDl+/wfr4IYpC7jDzLUIfw==
-
-node-forge@^0.9.1:
-  version "0.9.2"
-  resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.9.2.tgz#b35a44c28889b2ea55cabf8c79e3563f9676190a"
-  integrity sha512-naKSScof4Wn+aoHU6HBsifh92Zeicm1GDQKd1vp3Y/kOi8ub0DozCa9KpvYNCXslFHYRmLNiqRopGdTGwNLpNw==
 
 node-gyp-build@^4.2.1:
   version "4.2.3"
@@ -8289,10 +8289,10 @@ passing-notes@^5.5.4:
     url-parse "^1.4.7"
     ws "^7.2.0"
 
-passing-notes@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/passing-notes/-/passing-notes-6.2.0.tgz#819fd8e3775d46c1e94a48999608123948c8f6c4"
-  integrity sha512-wAc0CS4BShaPSZfWusGybtF4fcPluDmedHGC0slUv/sgipIT4pr3oK9ZwRkhIlUjTStETlHGtPISbKAuoqep1w==
+passing-notes@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/passing-notes/-/passing-notes-6.3.0.tgz#5835e8b4f7aee6c80898d1617fad16b09f6031e1"
+  integrity sha512-n7rEkMpMES4B8ajGq4WrxtdyRGdm2SgEFleIZDWKhS0YuUa7yXjrf8yE7TwtQcaJlQ+WDVNTmHmO3RlyOZ03Cg==
   dependencies:
     get-port "^5.1.1"
     get-stream "^6.0.0"
@@ -8301,7 +8301,7 @@ passing-notes@^6.2.0:
     httpx-server "^1.4.1"
     indent-string "^4.0.0"
     lodash "^4.17.20"
-    make-cert "^1.1.0"
+    make-cert "^1.1.1"
     p-event "^4.2.0"
     pretty-ms "^7.0.1"
     puff-pastry "^1.2.0"
@@ -11564,10 +11564,10 @@ xmlchars@^2.1.1:
   resolved "https://registry.yarnpkg.com/xmlchars/-/xmlchars-2.2.0.tgz#060fe1bcb7f9c76fe2a17db86a9bc3ab894210cb"
   integrity sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==
 
-xo@^0.34.1:
-  version "0.34.1"
-  resolved "https://registry.yarnpkg.com/xo/-/xo-0.34.1.tgz#0a0933fe864b654ca35cbfb71f18a7b4b9b357b6"
-  integrity sha512-i8ChTBFNZjzZ26gCoxVxDQ5yBfKAmJyKAzfPfiTvGLezqeWEdj6t/MmOEFi3nJFQzsX1rzBBRbBBgNicbcn8sA==
+xo@^0.34.2:
+  version "0.34.2"
+  resolved "https://registry.yarnpkg.com/xo/-/xo-0.34.2.tgz#5b756364a017830795edfb2332d5410628c2c253"
+  integrity sha512-GhCUAx99ExfHMXFqcmLfHg8G81NP87GouJcoEozdjxQDph2x3MQ9EIFWbCiowwOJRYb22VS5F3s+urp1eP6gBg==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^4.4.1"
     "@typescript-eslint/parser" "^4.4.1"

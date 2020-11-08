@@ -8,11 +8,7 @@ import serveStatic from './index.js'
 test.before(async (t) => {
   t.context.server = await startServer(
     {port: 10000},
-    compose(serveStatic('./fixtures/'), () => () => ({
-      status: 404,
-      headers: {},
-      body: ''
-    }))
+    compose(serveStatic('./fixtures/'), () => () => ({status: 404}))
   )
 })
 test.after.always(async (t) => {
@@ -38,8 +34,7 @@ test('serving static files', async (t) => {
 test('serving index.html when requesting a directory', async (t) => {
   const response = await sendRequest({
     method: 'GET',
-    url: 'http://localhost:10000',
-    headers: {}
+    url: 'http://localhost:10000'
   })
 
   t.true(response.body.includes('<div>Hello World!</div>'))
@@ -77,11 +72,7 @@ test('revalidating cached resources', async (t) => {
 
   const server = await startServer(
     {port: 10001},
-    compose(serveStatic(directory.path), () => () => ({
-      status: 404,
-      headers: {},
-      body: ''
-    }))
+    compose(serveStatic(directory.path), () => () => ({status: 404}))
   )
   t.teardown(async () => {
     await stopServer(server)
