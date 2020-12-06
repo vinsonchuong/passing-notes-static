@@ -24,12 +24,12 @@
   },
   "devDependencies": {
     "ava": "^3.13.0",
-    "ava-patterns": "^2.4.0",
+    "ava-patterns": "^2.4.1",
     "passing-notes": "^6.3.0",
-    "puppet-strings": "^4.0.0",
-    "puppet-strings-chrome": "^2.0.0",
-    "semantic-release": "^17.2.1",
-    "xo": "^0.34.2"
+    "puppet-strings": "^4.0.1",
+    "puppet-strings-chrome": "^2.0.1",
+    "semantic-release": "^17.3.0",
+    "xo": "^0.35.0"
   },
   "ava": {
     "verbose": true
