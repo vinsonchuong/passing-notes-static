@@ -32,7 +32,8 @@
     "xo": "^0.35.0"
   },
   "ava": {
-    "verbose": true
+    "verbose": true,
+    "timeout": "3m"
   },
   "xo": {
     "prettier": true,
