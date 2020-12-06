@@ -110,3 +110,40 @@ test('revalidating cached resources', async (t) => {
   await navigate(tab, 'http://localhost:10001')
   t.like(await findElement(tab, 'div'), {innerText: 'Hello There!'})
 })
+
+test('optionally handling only requests to a sub directory', async (t) => {
+  const server = await startServer(
+    {port: 10001},
+    compose(serveStatic('./fixtures/', '/sub'), () => () => ({status: 404}))
+  )
+  t.teardown(async () => {
+    await stopServer(server)
+  })
+
+  t.like(
+    await sendRequest({
+      method: 'GET',
+      url: 'http://localhost:10001/',
+      headers: {}
+    }),
+    {status: 404}
+  )
+
+  t.like(
+    await sendRequest({
+      method: 'GET',
+      url: 'http://localhost:10001/package.json',
+      headers: {}
+    }),
+    {status: 404}
+  )
+
+  t.like(
+    await sendRequest({
+      method: 'GET',
+      url: 'http://localhost:10001/sub',
+      headers: {}
+    }),
+    {status: 200}
+  )
+})

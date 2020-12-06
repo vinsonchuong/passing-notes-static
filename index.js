@@ -5,12 +5,17 @@ import contentType from 'content-type'
 import mime from 'mime'
 import fresh from 'fresh'
 
-export default function (rootDirectory) {
+export default function (rootDirectory, baseUrl = '/') {
   rootDirectory = path.resolve(rootDirectory)
 
   return (next) => async (request) => {
     const {pathname} = parseUrl(request.url)
-    const filePath = path.join(rootDirectory, pathname)
+
+    if (path.relative(baseUrl, pathname).startsWith('../')) {
+      return next(request)
+    }
+
+    const filePath = path.join(rootDirectory, path.relative(baseUrl, pathname))
 
     try {
       return await serveFile(request, filePath)

@@ -29,3 +29,18 @@ export default compose(
 
 `serveStatic` will resolve files within and relative to the given directory.
 When it can't find a file, it will delegate to the next middleware.
+
+Optionally, a `baseUrl` can be provided to "mount" the directory to a URL
+subpath. This can be used to route different URLs to different directories on
+the file system:
+
+```js
+import {compose} from 'passing-notes'
+import serveStatic from 'passing-notes-static'
+
+export default compose(
+  serveStatic('./src', '/'),
+  serveStatic('./images', '/assets/images'),
+  () => () => ({status: 404})
+)
+```
