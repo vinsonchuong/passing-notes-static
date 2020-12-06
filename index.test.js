@@ -62,7 +62,7 @@ test('falling through when a file cannot be found', async (t) => {
   t.is(response.status, 404)
 })
 
-test.only('disallowing access of the parent directory', async (t) => {
+test('disallowing access of the parent directory', async (t) => {
   const response = await sendRequest({
     method: 'GET',
     url: 'http://localhost:10000/foo/../../package.json',
