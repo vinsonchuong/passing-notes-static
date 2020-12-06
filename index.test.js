@@ -79,7 +79,6 @@ test('revalidating cached resources', async (t) => {
   t.teardown(async () => {
     await closeBrowser(browser)
   })
-  console.log('chrome opened')
 
   const server = await startServer(
     {port: 10001},
@@ -88,7 +87,6 @@ test('revalidating cached resources', async (t) => {
   t.teardown(async () => {
     await stopServer(server)
   })
-  console.log('server started')
 
   await directory.writeFile(
     'index.html',
@@ -100,7 +98,6 @@ test('revalidating cached resources', async (t) => {
   )
   const tab = await openTab(browser, 'http://localhost:10001')
   t.like(await findElement(tab, 'div'), {innerText: 'Hello World!'})
-  console.log('browser interaction 1')
 
   await directory.writeFile(
     'index.html',
@@ -112,7 +109,6 @@ test('revalidating cached resources', async (t) => {
   )
   await navigate(tab, 'http://localhost:10001')
   t.like(await findElement(tab, 'div'), {innerText: 'Hello There!'})
-  console.log('browser interaction 2')
 })
 
 test('optionally handling only requests to a sub directory', async (t) => {
