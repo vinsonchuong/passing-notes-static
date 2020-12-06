@@ -113,7 +113,7 @@ test('revalidating cached resources', async (t) => {
 
 test('optionally handling only requests to a sub directory', async (t) => {
   const server = await startServer(
-    {port: 10001},
+    {port: 10002},
     compose(serveStatic('./fixtures/', '/sub'), () => () => ({status: 404}))
   )
   t.teardown(async () => {
@@ -123,7 +123,7 @@ test('optionally handling only requests to a sub directory', async (t) => {
   t.like(
     await sendRequest({
       method: 'GET',
-      url: 'http://localhost:10001/',
+      url: 'http://localhost:10002/',
       headers: {}
     }),
     {status: 404}
@@ -132,7 +132,7 @@ test('optionally handling only requests to a sub directory', async (t) => {
   t.like(
     await sendRequest({
       method: 'GET',
-      url: 'http://localhost:10001/package.json',
+      url: 'http://localhost:10002/package.json',
       headers: {}
     }),
     {status: 404}
@@ -141,7 +141,7 @@ test('optionally handling only requests to a sub directory', async (t) => {
   t.like(
     await sendRequest({
       method: 'GET',
-      url: 'http://localhost:10001/sub',
+      url: 'http://localhost:10002/sub',
       headers: {}
     }),
     {status: 200}
