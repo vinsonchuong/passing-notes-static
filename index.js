@@ -10,8 +10,8 @@ export default function (rootDirectory) {
 
   return (next) => async (request) => {
     const {pathname} = parseUrl(request.url)
-
     const filePath = path.join(rootDirectory, pathname)
+
     try {
       return await serveFile(request, filePath)
     } catch (error) {
