@@ -45,7 +45,7 @@ test('allowing the client to cache resources', async (t) => {
     method: 'GET',
     url: 'http://localhost:10000',
     headers: {
-      'if-modified-since': new Date('2021-01-01').toUTCString()
+      'if-modified-since': new Date('2100-01-01').toUTCString()
     }
   })
 
