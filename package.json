@@ -16,20 +16,20 @@
   "dependencies": {
     "content-type": "^1.0.4",
     "fresh": "^0.5.2",
-    "mime": "^2.4.6",
+    "mime": "^2.4.7",
     "url-parse": "^1.4.7"
   },
   "peerDependencies": {
     "passing-notes": "^6.2.0"
   },
   "devDependencies": {
-    "ava": "^3.13.0",
+    "ava": "^3.15.0",
     "ava-patterns": "^2.4.1",
-    "passing-notes": "^6.3.0",
+    "passing-notes": "^6.3.1",
     "puppet-strings": "^4.0.1",
     "puppet-strings-chrome": "^2.0.1",
-    "semantic-release": "^17.3.0",
-    "xo": "^0.35.0"
+    "semantic-release": "^17.3.1",
+    "xo": "^0.37.1"
   },
   "ava": {
     "verbose": true,
@@ -40,10 +40,7 @@
     "space": 2,
     "semicolon": false,
     "rules": {
-      "import/extensions": "off",
-      "import/no-anonymous-default-export": "off",
-      "import/no-useless-path-segments": "off",
-      "unicorn/import-index": "off"
+      "import/no-anonymous-default-export": "off"
     }
   }
 }
