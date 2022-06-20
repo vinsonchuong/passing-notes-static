@@ -7,8 +7,8 @@ import serveStatic from './index.js'
 
 test.before(async (t) => {
   t.context.server = await startServer(
-    {port: 10000},
-    compose(serveStatic('./fixtures/'), () => () => ({status: 404}))
+    {port: 10_000},
+    compose(serveStatic('./fixtures/'), () => () => ({status: 404})),
   )
 })
 test.after.always(async (t) => {
@@ -19,14 +19,14 @@ test('serving static files', async (t) => {
   const response = await sendRequest({
     method: 'GET',
     url: 'http://localhost:10000/index.html',
-    headers: {}
+    headers: {},
   })
 
   t.like(response, {
     headers: {
       'content-type': 'text/html; charset=utf-8',
-      'content-length': '86'
-    }
+      'content-length': '86',
+    },
   })
   t.true(response.body.includes('<div>Hello World!</div>'))
 })
@@ -34,7 +34,7 @@ test('serving static files', async (t) => {
 test('serving index.html when requesting a directory', async (t) => {
   const response = await sendRequest({
     method: 'GET',
-    url: 'http://localhost:10000'
+    url: 'http://localhost:10000',
   })
 
   t.true(response.body.includes('<div>Hello World!</div>'))
@@ -45,8 +45,8 @@ test('allowing the client to cache resources', async (t) => {
     method: 'GET',
     url: 'http://localhost:10000',
     headers: {
-      'if-modified-since': new Date('2100-01-01').toUTCString()
-    }
+      'if-modified-since': new Date('2100-01-01').toUTCString(),
+    },
   })
 
   t.is(response.status, 304)
@@ -56,7 +56,7 @@ test('falling through when a file cannot be found', async (t) => {
   const response = await sendRequest({
     method: 'GET',
     url: 'http://localhost:10000/not-found',
-    headers: {}
+    headers: {},
   })
 
   t.is(response.status, 404)
@@ -66,7 +66,7 @@ test('disallowing access of the parent directory', async (t) => {
   const response = await sendRequest({
     method: 'GET',
     url: 'http://localhost:10000/foo/../../package.json',
-    headers: {}
+    headers: {},
   })
 
   t.is(response.status, 404)
@@ -81,8 +81,8 @@ test('revalidating cached resources', async (t) => {
   })
 
   const server = await startServer(
-    {port: 10001},
-    compose(serveStatic(directory.path), () => () => ({status: 404}))
+    {port: 10_001},
+    compose(serveStatic(directory.path), () => () => ({status: 404})),
   )
   t.teardown(async () => {
     await stopServer(server)
@@ -94,7 +94,7 @@ test('revalidating cached resources', async (t) => {
     <!doctype html>
     <meta charset="utf-8">
     <div>Hello World!</div>
-    `
+    `,
   )
   const tab = await openTab(browser, 'http://localhost:10001')
   t.like(await findElement(tab, 'div'), {innerText: 'Hello World!'})
@@ -105,7 +105,7 @@ test('revalidating cached resources', async (t) => {
     <!doctype html>
     <meta charset="utf-8">
     <div>Hello There!</div>
-    `
+    `,
   )
   await navigate(tab, 'http://localhost:10001')
   t.like(await findElement(tab, 'div'), {innerText: 'Hello There!'})
@@ -113,8 +113,8 @@ test('revalidating cached resources', async (t) => {
 
 test('optionally handling only requests to a sub directory', async (t) => {
   const server = await startServer(
-    {port: 10002},
-    compose(serveStatic('./fixtures/', '/sub'), () => () => ({status: 404}))
+    {port: 10_002},
+    compose(serveStatic('./fixtures/', '/sub'), () => () => ({status: 404})),
   )
   t.teardown(async () => {
     await stopServer(server)
@@ -124,26 +124,26 @@ test('optionally handling only requests to a sub directory', async (t) => {
     await sendRequest({
       method: 'GET',
       url: 'http://localhost:10002/',
-      headers: {}
+      headers: {},
     }),
-    {status: 404}
+    {status: 404},
   )
 
   t.like(
     await sendRequest({
       method: 'GET',
       url: 'http://localhost:10002/package.json',
-      headers: {}
+      headers: {},
     }),
-    {status: 404}
+    {status: 404},
   )
 
   t.like(
     await sendRequest({
       method: 'GET',
       url: 'http://localhost:10002/sub',
-      headers: {}
+      headers: {},
     }),
-    {status: 200}
+    {status: 200},
   )
 })

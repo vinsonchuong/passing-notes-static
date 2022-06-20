@@ -1,5 +1,5 @@
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 import parseUrl from 'url-parse'
 import contentType from 'content-type'
 import mime from 'mime'
@@ -40,26 +40,26 @@ async function serveFile(request, filePath) {
     'content-type': contentType.format({
       type: mime.getType(path.extname(filePath)),
       parameters: {
-        charset: 'utf-8'
-      }
+        charset: 'utf-8',
+      },
     }),
     'cache-control': 'no-cache',
-    'last-modified': new Date(fileStats.mtime).toUTCString()
+    'last-modified': new Date(fileStats.mtime).toUTCString(),
   }
   if (fresh(request.headers, responseHeaders)) {
     return {
       status: 304,
       headers: {
         ...responseHeaders,
-        'content-length': '0'
+        'content-length': '0',
       },
-      body: ''
+      body: '',
     }
   }
 
   return {
     status: 200,
     headers: responseHeaders,
-    body: fs.createReadStream(filePath)
+    body: fs.createReadStream(filePath),
   }
 }
