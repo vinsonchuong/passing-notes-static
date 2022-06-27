@@ -13,6 +13,7 @@
     "release": "semantic-release"
   },
   "type": "module",
+  "main": "index.js",
   "dependencies": {
     "content-type": "^1.0.4",
     "fresh": "^0.5.2",
