@@ -15,7 +15,7 @@
   "type": "module",
   "main": "index.js",
   "dependencies": {
-    "content-type": "^1.0.4",
+    "content-type": "^1.0.5",
     "fresh": "^0.5.2",
     "mime": "^3.0.0",
     "url-parse": "^1.5.10"
@@ -24,13 +24,13 @@
     "passing-notes": "^6.2.0"
   },
   "devDependencies": {
-    "ava": "^4.3.0",
-    "ava-patterns": "^3.0.2",
+    "ava": "^5.2.0",
+    "ava-patterns": "^3.2.0",
     "passing-notes": "^6.5.7",
     "puppet-strings": "^4.1.3",
     "puppet-strings-chrome": "^2.0.3",
-    "semantic-release": "^19.0.3",
-    "xo": "^0.50.0"
+    "semantic-release": "^20.1.0",
+    "xo": "^0.53.1"
   },
   "ava": {
     "verbose": true,
