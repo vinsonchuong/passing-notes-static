@@ -11,13 +11,13 @@ A static file middleware for
 Install [passing-notes-static](https://www.npmjs.com/package/passing-notes-static)
 by running:
 
-```sh
+```bash
 yarn add passing-notes-static
 ```
 
 Then, compose it with other middleware, or at least a default handler:
 
-```js
+```javascript
 import {compose} from 'passing-notes'
 import serveStatic from 'passing-notes-static'
 
@@ -34,7 +34,7 @@ Optionally, a `baseUrl` can be provided to "mount" the directory to a URL
 subpath. This can be used to route different URLs to different directories on
 the file system:
 
-```js
+```javascript
 import {compose} from 'passing-notes'
 import serveStatic from 'passing-notes-static'
 
