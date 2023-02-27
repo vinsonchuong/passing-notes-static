@@ -15,9 +15,11 @@
   "type": "module",
   "main": "index.js",
   "dependencies": {
+    "@tinyhttp/etag": "^2.0.6",
     "content-type": "^1.0.5",
     "fresh": "^0.5.2",
     "mime": "^3.0.0",
+    "strip-indent": "^4.0.0",
     "url-parse": "^1.5.10"
   },
   "peerDependencies": {
@@ -41,6 +43,7 @@
     "space": 2,
     "semicolon": false,
     "rules": {
+      "no-else-return": "off",
       "import/no-anonymous-default-export": "off",
       "unicorn/text-encoding-identifier-case": "off"
     }

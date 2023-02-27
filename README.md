@@ -30,16 +30,43 @@ export default compose(
 `serveStatic` will resolve files within and relative to the given directory.
 When it can't find a file, it will delegate to the next middleware.
 
-Optionally, a `baseUrl` can be provided to "mount" the directory to a URL
-subpath. This can be used to route different URLs to different directories on
-the file system:
+In addition, `serveStatic` supports serving from a lookup of file path to fixed
+string. Extra whitespaces from indentation are stripped out:
 
 ```javascript
 import {compose} from 'passing-notes'
 import serveStatic from 'passing-notes-static'
 
 export default compose(
-  serveStatic('./src', '/'),
+  serveStatic({
+    'index.html': `
+      <!doctype html>
+      <script type="module" src="/app/index.js"></script>
+    `,
+    'app/index.js': `
+      window.document.body.innerHTML = '<p>Hello World!</p>'
+    `
+  }),
+  () => () => ({status: 404})
+)
+```
+
+Optionally, a `baseUrl` can be provided as second argument to "mount" the
+directory to a URL subpath. This can be used to route different URLs to
+different directories on the file system:
+
+```javascript
+import {compose} from 'passing-notes'
+import serveStatic from 'passing-notes-static'
+
+export default compose(
+  serveStatic({
+    'index.html': `
+      <!doctype html>
+      <script type="module" src="/app/index.js"></script>
+    `
+  }, '/'),
+  serveStatic('./src', '/assets/js'),
   serveStatic('./images', '/assets/images'),
   () => () => ({status: 404})
 )

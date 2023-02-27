@@ -11,6 +11,7 @@ test.before(async (t) => {
     compose(serveStatic('./fixtures/'), () => () => ({status: 404})),
   )
 })
+
 test.after.always(async (t) => {
   await stopServer(t.context.server)
 })
@@ -72,7 +73,7 @@ test('disallowing access of the parent directory', async (t) => {
   t.is(response.status, 404)
 })
 
-test('revalidating cached resources', async (t) => {
+test('revalidating cached resources in the browser', async (t) => {
   const directory = await useTemporaryDirectory(t)
 
   const browser = await openChrome()
