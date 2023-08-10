@@ -1,3 +1,5 @@
+.github/
+.yarn/
 **/*.test.js
 **/test.js
 test/
