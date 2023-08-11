@@ -19,8 +19,8 @@ test('serving string files', async (t) => {
       () => () => ({status: 404}),
     ),
   )
-  t.teardown(async () => {
-    await stopServer(server)
+  t.teardown(() => {
+    stopServer(server)
   })
 
   {
@@ -73,8 +73,8 @@ test('serving index.html when requesting a directory', async (t) => {
       () => () => ({status: 404}),
     ),
   )
-  t.teardown(async () => {
-    await stopServer(server)
+  t.teardown(() => {
+    stopServer(server)
   })
 
   {
@@ -123,8 +123,8 @@ test('allowing the client to cache resources', async (t) => {
       () => () => ({status: 404}),
     ),
   )
-  t.teardown(async () => {
-    await stopServer(server)
+  t.teardown(() => {
+    stopServer(server)
   })
 
   const response = await sendRequest({
@@ -158,8 +158,8 @@ test('falling through when a file cannot be found', async (t) => {
       () => () => ({status: 404}),
     ),
   )
-  t.teardown(async () => {
-    await stopServer(server)
+  t.teardown(() => {
+    stopServer(server)
   })
 
   const response = await sendRequest({
@@ -188,8 +188,8 @@ test('optionally handling only requests to a sub directory', async (t) => {
     ),
   )
 
-  t.teardown(async () => {
-    await stopServer(server)
+  t.teardown(() => {
+    stopServer(server)
   })
 
   t.like(

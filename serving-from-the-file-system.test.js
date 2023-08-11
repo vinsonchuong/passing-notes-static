@@ -1,3 +1,4 @@
+import {setTimeout} from 'node:timers/promises'
 import test from 'ava'
 import {useTemporaryDirectory} from 'ava-patterns'
 import {openChrome} from 'puppet-strings-chrome'
@@ -12,8 +13,8 @@ test.before(async (t) => {
   )
 })
 
-test.after.always(async (t) => {
-  await stopServer(t.context.server)
+test.after.always((t) => {
+  stopServer(t.context.server)
 })
 
 test('serving static files', async (t) => {
@@ -77,16 +78,16 @@ test('revalidating cached resources in the browser', async (t) => {
   const directory = await useTemporaryDirectory(t)
 
   const browser = await openChrome()
-  t.teardown(async () => {
-    await closeBrowser(browser)
+  t.teardown(() => {
+    closeBrowser(browser)
   })
 
   const server = await startServer(
     {port: 10_001},
     compose(serveStatic(directory.path), () => () => ({status: 404})),
   )
-  t.teardown(async () => {
-    await stopServer(server)
+  t.teardown(() => {
+    stopServer(server)
   })
 
   await directory.writeFile(
@@ -99,6 +100,7 @@ test('revalidating cached resources in the browser', async (t) => {
   )
   const tab = await openTab(browser, 'http://localhost:10001')
   t.like(await findElement(tab, 'div'), {innerText: 'Hello World!'})
+  await setTimeout(1000)
 
   await directory.writeFile(
     'index.html',
@@ -117,8 +119,8 @@ test('optionally handling only requests to a sub directory', async (t) => {
     {port: 10_002},
     compose(serveStatic('./fixtures/', '/sub'), () => () => ({status: 404})),
   )
-  t.teardown(async () => {
-    await stopServer(server)
+  t.teardown(() => {
+    stopServer(server)
   })
 
   t.like(
