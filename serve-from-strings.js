@@ -6,7 +6,7 @@ import contentType from 'content-type'
 import mime from 'mime'
 import {eTag} from '@tinyhttp/etag'
 
-export default function (files, baseUrl = '/') {
+export default function serveFromStrings(files, baseUrl = '/') {
   const responses = {}
   for (const filePath of Object.keys(files)) {
     const body = stripIndent(files[filePath]).trim()

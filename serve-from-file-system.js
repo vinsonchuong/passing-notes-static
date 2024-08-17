@@ -5,7 +5,7 @@ import contentType from 'content-type'
 import mime from 'mime'
 import fresh from 'fresh'
 
-export default function (rootDirectory, baseUrl = '/') {
+export default function serveFromFileSystem(rootDirectory, baseUrl = '/') {
   rootDirectory = path.resolve(rootDirectory)
 
   return (next) => async (request) => {

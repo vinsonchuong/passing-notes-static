@@ -15,10 +15,10 @@
   "type": "module",
   "main": "index.js",
   "dependencies": {
-    "@tinyhttp/etag": "^2.1.0",
+    "@tinyhttp/etag": "^2.1.2",
     "content-type": "^1.0.5",
     "fresh": "^0.5.2",
-    "mime": "^3.0.0",
+    "mime": "^4.0.4",
     "strip-indent": "^4.0.0",
     "url-parse": "^1.5.10"
   },
@@ -26,13 +26,13 @@
     "passing-notes": "^6.2.0"
   },
   "devDependencies": {
-    "ava": "^5.3.1",
+    "ava": "^6.1.3",
     "ava-patterns": "^3.2.1",
-    "passing-notes": "^6.6.1",
-    "puppet-strings": "^5.0.1",
-    "puppet-strings-chrome": "^2.0.3",
-    "semantic-release": "^21.0.7",
-    "xo": "^0.55.1"
+    "passing-notes": "^6.8.5",
+    "puppet-strings": "^5.0.2",
+    "puppet-strings-chrome": "^2.0.4",
+    "semantic-release": "^24.1.0",
+    "xo": "^0.59.3"
   },
   "ava": {
     "verbose": true,
