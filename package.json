@@ -48,5 +48,5 @@
       "unicorn/text-encoding-identifier-case": "off"
     }
   },
-  "packageManager": "yarn@3.2.1"
+  "packageManager": "yarn@4.4.0"
 }
