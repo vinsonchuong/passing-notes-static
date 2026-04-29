@@ -132,7 +132,7 @@ test('allowing the client to cache resources', async (t) => {
     url: 'http://localhost:10102',
     headers: {},
   })
-  const etag = response.headers.etag
+  const {etag} = response.headers
 
   const cachedResponse = await sendRequest({
     method: 'GET',
