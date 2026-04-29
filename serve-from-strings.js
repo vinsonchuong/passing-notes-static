@@ -2,9 +2,9 @@ import {Buffer} from 'node:buffer'
 import path from 'node:path'
 import parseUrl from 'url-parse'
 import stripIndent from 'strip-indent'
-import contentType from 'content-type'
-import mime from 'mime'
 import {eTag} from '@tinyhttp/etag'
+import flow from 'lodash/flow.js'
+import {withContentType} from './mime-type.js'
 
 export default function serveFromStrings(files, baseUrl = '/') {
   const responses = {}
@@ -12,17 +12,11 @@ export default function serveFromStrings(files, baseUrl = '/') {
     const body = stripIndent(files[filePath]).trim()
     responses[filePath] = {
       status: 200,
-      headers: {
+      headers: flow([withContentType(filePath)])({
         'content-length': `${Buffer.byteLength(body)}`,
-        'content-type': contentType.format({
-          type: mime.getType(path.extname(filePath)),
-          parameters: {
-            charset: 'utf-8',
-          },
-        }),
         'cache-control': 'no-cache',
         etag: eTag(body),
-      },
+      }),
       body,
     }
   }

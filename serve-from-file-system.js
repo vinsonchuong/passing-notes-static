@@ -1,9 +1,9 @@
 import path from 'node:path'
 import fs from 'node:fs'
 import parseUrl from 'url-parse'
-import contentType from 'content-type'
-import mime from 'mime'
 import fresh from 'fresh'
+import flow from 'lodash/flow.js'
+import {withContentType} from './mime-type.js'
 
 export default function serveFromFileSystem(rootDirectory, baseUrl = '/') {
   rootDirectory = path.resolve(rootDirectory)
@@ -35,17 +35,11 @@ async function serveFile(request, filePath) {
     return serveFile(request, path.join(filePath, 'index.html'))
   }
 
-  const responseHeaders = {
+  const responseHeaders = flow([withContentType(filePath)])({
     'content-length': `${fileStats.size}`,
-    'content-type': contentType.format({
-      type: mime.getType(path.extname(filePath)),
-      parameters: {
-        charset: 'utf-8',
-      },
-    }),
     'cache-control': 'no-cache',
     'last-modified': new Date(fileStats.mtime).toUTCString(),
-  }
+  })
   if (fresh(request.headers, responseHeaders)) {
     return {
       status: 304,

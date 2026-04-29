@@ -210,3 +210,30 @@ test('optionally handling only requests to a sub directory', async (t) => {
     {status: 200},
   )
 })
+
+test('tolerating file names with no extension', async (t) => {
+  const server = await startServer(
+    {port: 10_105},
+    compose(
+      serveStatic({
+        file: `
+            Hello World!
+          `,
+      }),
+      () => () => ({status: 404}),
+    ),
+  )
+
+  t.teardown(() => {
+    stopServer(server)
+  })
+
+  t.like(
+    await sendRequest({
+      method: 'GET',
+      url: 'http://localhost:10105/file',
+      headers: {},
+    }),
+    {status: 200},
+  )
+})
