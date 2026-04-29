@@ -1,5 +1,11 @@
+.gitignore
 .github/
-.yarn/
+
 **/*.test.js
 **/test.js
 test/
+test-lib/
+
+.yarn/
+.yarnrc.yml
+yarn.lock
